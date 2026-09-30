@@ -1,1 +1,38 @@
+# Contribución individual -- Etapa 03
+**Equipo:** 52
+**Integrante:** Tiziano Perone
+**Fecha:** 2026-09-30
 
+## 1. Aporte realizado
+- Creación y estructuración del directorio `SQL/ddl/` en el repositorio para el versionado ordenado de los scripts DDL y DML.
+- Redacción e implementación del script DDL (`GuaraniTurnosMedicos`) en SQL Server para la definición de la base de datos y todas sus tablas (`Rol`, `Usuario`, `Secretario`, `Especialidad`, `Medico`, `Especialidad_Medico`, `AgendaSemanal`, `BloqueoAgenda`, `ObraSocial`, `Paciente`, `ListaEspera`, `Consultorio`, `EstadoTurno` y `Turno`).
+- Definición de restricciones de integridad referencial (claves primarias `PRIMARY KEY` y claves foráneas `FOREIGN KEY`) respetando la secuencia y dependencias entre entidades.
+- Creación e incorporación inicial del script para la carga de datos de prueba (`datos_prueba.sql`).
+- Corrección, renombrado y homologación de archivos `.sql` siguiendo las pautas y formato de entrega requeridos por la cátedra.
+
+## 2. Decisiones en las que participé
+- Determinación del orden secuencial estricto de ejecución de las sentencias DDL para evitar errores de dependencias cíclicas o tablas no encontradas al aplicar restricciones `FOREIGN KEY`.
+- Elección de tipos de datos, longitudes y restricciones `NOT NULL` para asegurar la consistencia de los atributos principales del dominio médico.
+- Normalización e implementación física de la relación muchos a muchos entre médicos y especialidades a través de la tabla intermedia `Especialidad_Medico`.
+
+## 3. Problemas o dificultades identificadas
+- Conflictos iniciales de integridad referencial durante la ejecución en SQL Server al vincular tablas dependientes antes de la creación formal de la entidad referenciada.
+- Dificultades al gestionar la estructura de carpetas en Git (`SQL/ddl/`), donde inicialmente se generaron archivos planos y rutas vacías que debieron depurarse.
+
+## 4. Soluciones o propuestas realizadas
+- Reordenamiento exhaustivo del script DDL, estableciendo la creación previa de tablas base e independientes y documentando con comentarios el flujo secuencial de ejecución.
+- Limpieza y reestructuración del repositorio mediante commits específicos para eliminar archivos temporales y consolidar la jerarquía de carpetas requerida.
+
+## 5. Evidencias en el repositorio
+- `SQL/ddl/`
+- Commit: `Se creó la carpeta sql para cargar los archivos correspondientes respetando la estructura`
+- Commit: `Delete sql`
+- Commit: `Se crea el apartado para subir la consulta ddl de la base de datos`
+- Commit: `Se añadió el archivo de las consultas realizadas en sql server`
+- Commit: `Delete SQL/ddl/mi_archivo.sql`
+- Commit: `Se cambió el nombre del archivo sql de acuerdo al formato de entrega`
+- Commit: `Create datos_prueba.sql`
+
+## 6. Reflexión individual
+¿Qué concepto o competencia de Bases de Datos I considero que desarrollé en esta etapa?
+- En esta etapa afiancé la competencia de implementar físicamente un modelo relacional mediante Data Definition Language (DDL) en SQL Server. Comprendí la importancia crítica del orden de definición para garantizar la integridad referencial a través de claves foráneas y la correcta organización de los scripts y datos de prueba dentro del repositorio.
