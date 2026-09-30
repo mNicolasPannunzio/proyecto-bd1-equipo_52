@@ -83,3 +83,41 @@ INSERT INTO Medico (matriculaMedico, fechaContratacion, idUsuario) VALUES
 INSERT INTO Paciente (fechaNacimiento, idUsuario, idObraSocial) VALUES
 ('1995-04-12', 7, 1), -- idPaciente 1 (OSDE)
 ('1998-11-23', 8, 2); -- idPaciente 2 (Swiss Medical)
+---------------------------------------------------------------------------------
+-- INTEGRANTE 3: ASOCIACIONES Y TRANSACCIONES (Nivel 3)
+---------------------------------------------------------------------------------
+
+-- 10) Especialidad_Medico
+INSERT INTO Especialidad_Medico (idMedico, idEspecialidad, activo, fechaObtencion, institucionEmisora) VALUES
+(1, 1, 1, '2014-12-15', 'Universidad de Buenos Aires'),
+(1, 2, 1, '2018-05-20', 'Universidad Nacional de La Plata'),
+(2, 3, 1, '2017-10-10', 'Universidad Nacional de Córdoba'),
+(3, 4, 1, '2019-03-30', 'Universidad de Buenos Aires');
+
+-- 11) AgendaSemanal
+INSERT INTO AgendaSemanal (diaSemana, horaInicio, horaFin, duracionMinutos, idMedico) VALUES
+('Lunes', '08:00:00', '12:00:00', 30, 1),
+('Miércoles', '14:00:00', '18:00:00', 20, 1),
+('Martes', '09:00:00', '13:00:00', 30, 2),
+('Jueves', '08:00:00', '12:00:00', 40, 3),
+('Viernes', '15:00:00', '19:00:00', 30, 3);
+
+-- 12) BloqueoAgenda
+INSERT INTO BloqueoAgenda (fechaInicio, fechaFin, motivo, idMedico) VALUES
+('2026-10-12 00:00:00', '2026-10-12 23:59:59', 'Feriado Nacional', 1),
+('2026-11-01 08:00:00', '2026-11-07 18:00:00', 'Congreso de Cardiología', 2),
+('2026-12-20 00:00:00', '2026-12-31 23:59:59', 'Vacaciones', 3);
+
+-- 13) ListaEspera
+INSERT INTO ListaEspera (fechaCancelacion, idPaciente) VALUES
+(NULL, 1),
+('2026-09-25 10:30:00', 2),
+(NULL, 2);
+
+-- 14) Turno
+INSERT INTO Turno (codigoTurno, fechaTurno, horaTurno, idEstado, idMedico, idConsultorio, idPaciente) VALUES
+('TRN-2026-001', '2026-10-05', '08:00:00', 2, 1, 1, 1),
+('TRN-2026-002', '2026-10-05', '08:30:00', 1, 1, 1, 2),
+('TRN-2026-003', '2026-10-06', '09:00:00', 3, 2, 2, 1),
+('TRN-2026-004', '2026-10-08', '08:00:00', 4, 3, 3, 2),
+('TRN-2026-005', '2026-10-09', '15:00:00', 5, 3, 4, 1);
