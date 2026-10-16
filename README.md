@@ -30,10 +30,10 @@ Acceso rápido a las entregas, modelos y scripts SQL del proyecto:
 * 📂 [`docs/etapa-03/`](docs/etapa-03/): **Etapa III — Implementación Física (DDL/DML)**
   * 📝 Manifiestos individuales de diseño y carga DDL/DML: [`equipo52_etapa03_43825227.md`](docs/etapa-03/equipo52_etapa03_43825227.md), [`equipo52_etapa03_46724743.md`](docs/etapa-03/equipo52_etapa03_46724743.md), [`equipo52_etapa_03_41948148.md`](docs/etapa-03/equipo52_etapa_03_41948148.md), [`equipo52_etapa_03_44683191.md`](docs/etapa-03/equipo52_etapa_03_44683191.md), [`equipo52_etapa_03_45456141.md`](docs/etapa-03/equipo52_etapa_03_45456141.md).
 
-### 📁 [`sql/`](sql/) — Scripts SQL (SQL Server / T-SQL)
-* 🛠️ [`sql/ddl/crear_bd.sql`](sql/ddl/crear_bd.sql): Script DDL completo de creación de base de datos, tablas maestras, derivadas y restricciones de integridad (`PK`, `FK`, `UQ`, `CHK`).
-* 📥 [`sql/dml/datos_prueba.sql`](sql/dml/datos_prueba.sql): Script DML con carga de datos de prueba coherentes organizados por niveles de precedencia.
-* 🔍 [`sql/consultas/Scripts_Consultas.sql`](sql/consultas/Scripts_Consultas.sql): Scripts de consultas de verificación y casos de uso del sistema.
+### 📁 [`SQL/`](SQL/) — Scripts SQL (SQL Server / T-SQL)
+* 🛠️ [`SQL/ddl/crear_bd.sql`](SQL/ddl/crear_bd.sql): Script DDL completo de creación de base de datos, tablas maestras, derivadas y restricciones de integridad (`PK`, `FK`, `UQ`, `CHK`).
+* 📥 [`SQL/dml/datos_prueba.sql`](SQL/dml/datos_prueba.sql): Script DML con carga de datos de prueba coherentes organizados por niveles de precedencia.
+* 🔍 [`SQL/consultas/Scripts_Consultas.sql`](SQL/consultas/Scripts_Consultas.sql): Scripts de consultas de verificación y casos de uso del sistema.
 
 ---
 
