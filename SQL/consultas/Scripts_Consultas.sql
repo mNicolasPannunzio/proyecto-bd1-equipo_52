@@ -196,3 +196,72 @@ WHERE t.idTurno = 5
 
   SELECT * FROM ListaEspera --Aca en id lista 4 se tiene que ver la fecha de cancelacion al dia de hoy (getdate())
   SELECT * FROM Turno --Aca vemos que el id_paciente 1 esta asignado al id_turno 5 (que es el que se cambia con esta consulta)
+
+
+
+  -- ============================================================================
+-- 
+-- ============================================================================
+
+-- 1) Comprobante / Constancia de Turno (Equivalente a Factura/Comprobante)
+-- Consolida los datos del paciente, médico, especialidad, consultorio y código único (HU#22)
+SELECT 
+    t.codigoTurno AS codigo_comprobante,
+    t.fechaTurno,
+    t.horaTurno,
+    et.nombreEstado AS estado_turno,
+    CONCAT(u_pac.nombreUsuario, ' ', u_pac.apellidoUsuario) AS paciente,
+    u_pac.dniUsuario AS dni_paciente,
+    COALESCE(os.nombreOS, 'Particular') AS obra_social,
+    CONCAT(u_med.nombreUsuario, ' ', u_med.apellidoUsuario) AS profesional_medico,
+    m.matriculaMedico AS matricula,
+    esp.nombreEspecialidad AS especialidad,
+    c.nroConsultorio AS consultorio
+FROM Turno t
+JOIN Paciente p ON t.idPaciente = p.idPaciente
+JOIN Usuario u_pac ON p.idUsuario = u_pac.idUsuario
+LEFT JOIN ObraSocial os ON p.idObraSocial = os.idObraSocial
+JOIN Medico m ON t.idMedico = m.idMedico
+JOIN Usuario u_med ON m.idUsuario = u_med.idUsuario
+JOIN Especialidad_Medico em ON m.idMedico = em.idMedico
+JOIN Especialidad esp ON em.idEspecialidad = esp.idEspecialidad
+JOIN Consultorio c ON t.idConsultorio = c.idConsultorio
+JOIN EstadoTurno et ON t.idEstado = et.idEstado
+WHERE t.idTurno = 1;
+
+
+-- 2) Reporte Agregado: Total de atenciones por médico en rango de fechas
+-- Aplica GROUP BY, COUNT y filtros temporales (Equivalente a ventas por vendedor)
+SELECT 
+    m.idMedico,
+    CONCAT(u.nombreUsuario, ' ', u.apellidoUsuario) AS profesional,
+    m.matriculaMedico,
+    COUNT(t.idTurno) AS total_turnos_programados,
+    COUNT(CASE WHEN et.nombreEstado = 'Reservado' THEN 1 END) AS turnos_reservados,
+    COUNT(CASE WHEN et.nombreEstado = 'Disponible' THEN 1 END) AS turnos_disponibles
+FROM Medico m
+JOIN Usuario u ON m.idUsuario = u.idUsuario
+LEFT JOIN Turno t ON m.idMedico = t.idMedico 
+    AND t.fechaTurno BETWEEN '2026-10-01' AND '2026-10-31'
+LEFT JOIN EstadoTurno et ON t.idEstado = et.idEstado
+GROUP BY m.idMedico, u.nombreUsuario, u.apellidoUsuario, m.matriculaMedico
+ORDER BY total_turnos_programados DESC;
+
+
+-- 3) Consulta de Negocio Avanzada: Médicos con alta demanda de atención
+-- Combina más de 3 tablas con JOIN, agregación y filtro condicional mediante HAVING
+SELECT 
+    m.idMedico,
+    CONCAT(u.nombreUsuario, ' ', u.apellidoUsuario) AS medico,
+    esp.nombreEspecialidad,
+    COUNT(t.idTurno) AS turnos_reservados
+FROM Turno t
+JOIN Medico m ON t.idMedico = m.idMedico
+JOIN Usuario u ON m.idUsuario = u.idUsuario
+JOIN Especialidad_Medico em ON m.idMedico = em.idMedico
+JOIN Especialidad esp ON em.idEspecialidad = esp.idEspecialidad
+JOIN EstadoTurno et ON t.idEstado = et.idEstado
+WHERE et.nombreEstado IN ('Reservado', 'En Espera', 'Atendido')
+GROUP BY m.idMedico, u.nombreUsuario, u.apellidoUsuario, esp.nombreEspecialidad
+HAVING COUNT(t.idTurno) >= 1
+ORDER BY turnos_reservados DESC;
