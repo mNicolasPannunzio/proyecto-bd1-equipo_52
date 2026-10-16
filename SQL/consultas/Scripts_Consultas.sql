@@ -137,3 +137,62 @@ WHERE idTurno = 1
 
 --Aca en el idTurno 1 se tiene que ver idEstado 2. Y el codigoTurno del idTurno 1 = 'TRN-2026-101'
  SELECT * FROM TURNO
+
+
+-- ============================================================================
+-- HU#21 / RF#21: Cancelación de turnos programados
+-- Corregido: Se establece idPaciente = NULL para desvincular al paciente al liberar el turno.
+-- ============================================================================
+
+--Aca se actualiza la fecha para poder probar el cambio
+UPDATE Turno 
+SET fechaTurno = '2026-10-30', horaTurno = '10:00:00' 
+WHERE idTurno = 4;
+---
+UPDATE Turno
+SET 
+    idPaciente = NULL,
+    codigoTurno = 'LIBRE',
+    idEstado = (SELECT idEstado FROM EstadoTurno WHERE nombreEstado = 'Disponible')
+WHERE idTurno = 4
+  -- Validación de regla de negocio: cancelación con más de 2 horas de anticipación
+  AND DATEDIFF(HOUR, GETDATE(), CAST(fechaTurno AS DATETIME) + CAST(horaTurno AS DATETIME)) > 2;
+
+  --Al ejecutar select * from turno se tiene que ver un null en idPaciente del idturno 4 y "Libre en codigoturno"
+    SELECT * FROM TURNO
+
+
+
+-- ============================================================================
+-- HU#23 / RF#23: Cambio de estado a "Paciente en Espera" por secretaría
+-- ============================================================================
+UPDATE Turno
+SET idEstado = 3                       -- Estado 3 = 'En Espera' / 'Confirmado'
+WHERE idTurno = 1
+  AND idEstado = 2;                    -- Solo si estaba previamente 'Reservado'
+
+-- Aca en idTurno 1, se tendria que cambiar el idEstado a 3.
+SELECT * FROM TURNO
+
+
+-- ============================================================================
+-- HU#26 / RF#26: Inserción en lista de espera por cancelación
+-- Se ajustó el NOT EXISTS para verificar que no se inserte un duplicado
+-- para el mismo paciente en el mismo día.
+-- ============================================================================
+INSERT INTO ListaEspera (fechaCancelacion, idPaciente)
+SELECT 
+    GETDATE(),
+    t.idPaciente
+FROM Turno t
+WHERE t.idTurno = 5 
+  AND t.idPaciente IS NOT NULL
+  AND NOT EXISTS (
+      SELECT 1 
+      FROM ListaEspera le 
+      WHERE le.idPaciente = t.idPaciente 
+        AND CAST(le.fechaCancelacion AS DATE) = CAST(GETDATE() AS DATE)
+  );
+
+  SELECT * FROM ListaEspera --Aca en id lista 4 se tiene que ver la fecha de cancelacion al dia de hoy (getdate())
+  SELECT * FROM Turno --Aca vemos que el id_paciente 1 esta asignado al id_turno 5 (que es el que se cambia con esta consulta)
