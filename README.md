@@ -29,7 +29,7 @@ Acceso rápido a las entregas, modelos y scripts SQL del proyecto:
   * 📝 Manifiestos de contribución individual: [`equipo52_etapa02_41948148.md`](docs/etapa-02/equipo52_etapa02_41948148.md), [`equipo52_etapa02_43825227.md`](docs/etapa-02/equipo52_etapa02_43825227.md), [`equipo52_etapa02_45456141.md`](docs/etapa-02/equipo52_etapa02_45456141.md), [`equipo52_etapa02_46724743.md`](docs/etapa-02/equipo52_etapa02_46724743.md).
 * 📂 [`docs/etapa-03/`](docs/etapa-03/): **Etapa III — Implementación Física (DDL/DML)**
   * 📝 Manifiestos individuales de diseño y carga DDL/DML: [`equipo52_etapa03_43825227.md`](docs/etapa-03/equipo52_etapa03_43825227.md), [`equipo52_etapa03_46724743.md`](docs/etapa-03/equipo52_etapa03_46724743.md), [`equipo52_etapa_03_41948148.md`](docs/etapa-03/equipo52_etapa_03_41948148.md), [`equipo52_etapa_03_44683191.md`](docs/etapa-03/equipo52_etapa_03_44683191.md), [`equipo52_etapa_03_45456141.md`](docs/etapa-03/equipo52_etapa_03_45456141.md).
- * * 📂 [`docs/etapa-04/`](docs/etapa-04/): **Etapa IV — Consultas SQL**
+* 📂 [`docs/etapa-04/`](docs/etapa-04/): **Etapa IV — Consultas SQL**
    * 📝 Manifiestos individuales de consultas: [`equipo52_etapa04_46724743.md`](docs/etapa-04/equipo52_etapa04_46724743.md)
 
 ### 📁 [`SQL/`](SQL/) — Scripts SQL (SQL Server / T-SQL)
