@@ -13,6 +13,30 @@
 * **Romero, Enzo** — *DNI: 41.948.148*
 ---
 
+## 🧭 NAVEGACIÓN Y ESTRUCTURA DEL REPOSITORIO
+
+Acceso rápido a las entregas, modelos y scripts SQL del proyecto:
+
+### 📁 [`docs/`](docs/) — Documentación Académica y Entregas
+* 📄 [`docs/ERS-GuaraniTurnosMedicos.pdf`](docs/ERS-GuaraniTurnosMedicos.pdf): Documento de Especificación de Requisitos de Software (ERS) base de Ingeniería de Software 1.
+* 📂 [`docs/etapa-01/`](docs/etapa-01/): **Etapa I — Requerimientos y Dominio del Negocio**
+  * 📝 [`Requerimientos_y_Dominio_del_Negocio.md`](docs/etapa-01/Requerimientos_y_Dominio_del_Negocio.md): Descripción del dominio clínico y especificación formal de las reglas de negocio (RN1 a RN8).
+  * 📄 [`equipo52_etapa_1.pdf`](docs/etapa-01/equipo52_etapa_1.pdf): Informe formal consolidado de la primera entrega.
+* 📂 [`docs/etapa-02/`](docs/etapa-02/): **Etapa II — Modelado Conceptual, Lógico y Normalización**
+  * 📝 [`ModeloRelacional.md`](docs/etapa-02/ModeloRelacional.md): Esquema relacional textual con claves primarias/foráneas y proceso de normalización hasta 3FN.
+  * 🖼️ [`DER TURNOS MEDICOS GUARANI - CON EDRPLUS.png`](docs/etapa-02/DER%20TURNOS%20MEDICOS%20GUARANI%20-%20CON%20EDRPLUS.png): Diagrama Entidad-Relación elaborado en ERDPlus (notación Chen).
+  * 🖼️ [`MODELO RELACIONAL DE TABLAS - HECHO CON EDR PLUS.jpg`](docs/etapa-02/MODELO%20RELACIONAL%20DE%20TABLAS%20-%20HECHO%20CON%20EDR%20PLUS.jpg): Diagrama tabular del modelo relacional físico/lógico.
+  * 📝 Manifiestos de contribución individual: [`equipo52_etapa02_41948148.md`](docs/etapa-02/equipo52_etapa02_41948148.md), [`equipo52_etapa02_43825227.md`](docs/etapa-02/equipo52_etapa02_43825227.md), [`equipo52_etapa02_45456141.md`](docs/etapa-02/equipo52_etapa02_45456141.md), [`equipo52_etapa02_46724743.md`](docs/etapa-02/equipo52_etapa02_46724743.md).
+* 📂 [`docs/etapa-03/`](docs/etapa-03/): **Etapa III — Implementación Física (DDL/DML)**
+  * 📝 Manifiestos individuales de diseño y carga DDL/DML: [`equipo52_etapa03_43825227.md`](docs/etapa-03/equipo52_etapa03_43825227.md), [`equipo52_etapa03_46724743.md`](docs/etapa-03/equipo52_etapa03_46724743.md), [`equipo52_etapa_03_41948148.md`](docs/etapa-03/equipo52_etapa_03_41948148.md), [`equipo52_etapa_03_44683191.md`](docs/etapa-03/equipo52_etapa_03_44683191.md), [`equipo52_etapa_03_45456141.md`](docs/etapa-03/equipo52_etapa_03_45456141.md).
+
+### 📁 [`sql/`](sql/) — Scripts SQL (SQL Server / T-SQL)
+* 🛠️ [`sql/ddl/crear_bd.sql`](sql/ddl/crear_bd.sql): Script DDL completo de creación de base de datos, tablas maestras, derivadas y restricciones de integridad (`PK`, `FK`, `UQ`, `CHK`).
+* 📥 [`sql/dml/datos_prueba.sql`](sql/dml/datos_prueba.sql): Script DML con carga de datos de prueba coherentes organizados por niveles de precedencia.
+* 🔍 [`sql/consultas/Scripts_Consultas.sql`](sql/consultas/Scripts_Consultas.sql): Scripts de consultas de verificación y casos de uso del sistema.
+
+---
+
 ## 📌 DESCRIPCIÓN DEL PROYECTO
 
 ### 📐 Proyecto Base de Origen
@@ -20,7 +44,7 @@ Este trabajo toma como base conceptual y de especificación el **Proyecto Integr
 
 Para consultar el documento original de Especificación de Requisitos de Software (ERS), la educción de requerimientos, entrevistas, historias de usuario y prototipos de pantalla, se puede acceder al siguiente enlace:
 
-📄 **Documento Base ERS:** [ERS-GuaraniTurnosMedicos.pdf](Documentacion/ERS-GuaraniTurnosMedicos.pdf)
+📄 **Documento Base ERS:** [ERS-GuaraniTurnosMedicos.pdf](docs/ERS-GuaraniTurnosMedicos.pdf)
 
 ---
 
