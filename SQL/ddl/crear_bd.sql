@@ -140,7 +140,8 @@ CREATE TABLE Especialidad_Medico (
 
 	CONSTRAINT PK_EspecialidadMedico PRIMARY KEY (idEspecialidadMedico),
 	CONSTRAINT FK_EspecialidadMedico_Medico FOREIGN KEY (idMedico) REFERENCES Medico (idMedico),
-	CONSTRAINT FK_EspecialidadMedico_Especialidad FOREIGN KEY (idEspecialidad) REFERENCES Especialidad (idEspecialidad)
+	CONSTRAINT FK_EspecialidadMedico_Especialidad FOREIGN KEY (idEspecialidad) REFERENCES Especialidad (idEspecialidad),
+	CONSTRAINT UQ_EspecialidadMedico_MedicoEspecialidad UNIQUE (idMedico, idEspecialidad)
 	);
 
 -- 11) Tabla de la agenda semanal
@@ -197,6 +198,8 @@ CREATE TABLE Turno (
 
 	CONSTRAINT PK_Turno PRIMARY KEY (idTurno),
 	CONSTRAINT UQ_Turno_codigoTurno UNIQUE (codigoTurno),
+	CONSTRAINT UQ_Turno_MedicoFechaHora UNIQUE (idMedico, fechaTurno, horaTurno),
+	CONSTRAINT UQ_Turno_ConsultorioFechaHora UNIQUE (idConsultorio, fechaTurno, horaTurno),
 	CONSTRAINT FK_Turno_Estado FOREIGN KEY (idEstado) REFERENCES EstadoTurno (idEstado),
 	CONSTRAINT FK_Turno_Medico FOREIGN KEY (idMedico) REFERENCES Medico (idMedico),
 	CONSTRAINT FK_Turno_Consultorio FOREIGN KEY (idConsultorio) REFERENCES Consultorio (idConsultorio),
