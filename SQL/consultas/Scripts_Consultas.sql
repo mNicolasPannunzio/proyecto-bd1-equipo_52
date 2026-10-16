@@ -265,3 +265,77 @@ WHERE et.nombreEstado IN ('Reservado', 'En Espera', 'Atendido')
 GROUP BY m.idMedico, u.nombreUsuario, u.apellidoUsuario, esp.nombreEspecialidad
 HAVING COUNT(t.idTurno) >= 1
 ORDER BY turnos_reservados DESC;
+
+-- ============================================================================
+-- 1) Comprobante / Ficha de Turno Detallada por Paciente con Obra Social
+-- Equivalente a Factura/Comprobante. Consolida los datos del paciente, 
+-- cobertura médica, consultorio, médico, especialidad y estado, calculando 
+-- el total de turnos acumulados del paciente mediante funciones de ventana.
+-- ============================================================================
+
+SELECT 
+    p.idPaciente,
+    CONCAT(u_pac.nombreUsuario, ' ', u_pac.apellidoUsuario) AS paciente,
+    u_pac.dniUsuario AS dni_paciente,
+    COALESCE(os.nombreOS, 'Particular') AS cobertura_medica,
+    t.codigoTurno AS codigo_comprobante,
+    t.fechaTurno,
+    t.horaTurno,
+    c.nroConsultorio AS consultorio,
+    CONCAT(u_med.nombreUsuario, ' ', u_med.apellidoUsuario) AS profesional,
+    esp.nombreEspecialidad AS especialidad,
+    et.nombreEstado AS estado_turno,
+    COUNT(t.idTurno) OVER(PARTITION BY p.idPaciente) AS total_turnos_paciente
+FROM Paciente p
+JOIN Usuario u_pac ON p.idUsuario = u_pac.idUsuario
+LEFT JOIN ObraSocial os ON p.idObraSocial = os.idObraSocial
+JOIN Turno t ON p.idPaciente = t.idPaciente
+JOIN Consultorio c ON t.idConsultorio = c.idConsultorio
+JOIN Medico m ON t.idMedico = m.idMedico
+JOIN Usuario u_med ON m.idUsuario = u_med.idUsuario
+JOIN Especialidad_Medico em ON m.idMedico = em.idMedico
+JOIN Especialidad esp ON em.idEspecialidad = esp.idEspecialidad
+JOIN EstadoTurno et ON t.idEstado = et.idEstado
+WHERE p.idPaciente = 2
+ORDER BY t.fechaTurno DESC, t.horaTurno DESC;
+
+-- ============================================================================
+-- 2) Reporte Agregado: Demandas y Volumen de Atenciones por Obra Social
+-- Equivalente a Ventas por Categoría. Agrupa los turnos por Obra Social 
+-- dentro de un rango de fechas utilizando GROUP BY, COUNT y SUM condicional.
+-- ============================================================================
+
+SELECT 
+    COALESCE(os.nombreOS, 'Particular') AS obra_social,
+    COUNT(t.idTurno) AS total_turnos_solicitados,
+    SUM(CASE WHEN et.nombreEstado = 'Reservado' THEN 1 ELSE 0 END) AS turnos_reservados,
+    SUM(CASE WHEN et.nombreEstado = 'En Espera' THEN 1 ELSE 0 END) AS pacientes_en_espera,
+    COUNT(DISTINCT t.idMedico) AS medicos_distintos_atendiendo
+FROM Turno t
+JOIN Paciente p ON t.idPaciente = p.idPaciente
+LEFT JOIN ObraSocial os ON p.idObraSocial = os.idObraSocial
+JOIN EstadoTurno et ON t.idEstado = et.idEstado
+WHERE t.fechaTurno BETWEEN '2026-10-01' AND '2026-10-31'
+GROUP BY os.nombreOS
+ORDER BY total_turnos_solicitados DESC;
+
+-- ============================================================================
+-- 3) Consulta de Negocio Avanzada: Análisis de Pacientes en Lista de Espera
+-- Cruce relacional de múltiples tablas (Paciente, Usuario, ListaEspera, Turno)
+-- aplicando agrupamiento y filtros sobre agregaciones mediante la cláusula HAVING
+-- para identificar usuarios con solicitudes activas de reprogramación.
+-- ============================================================================
+
+SELECT 
+    p.idPaciente,
+    CONCAT(u.nombreUsuario, ' ', u.apellidoUsuario) AS paciente,
+    u.dniUsuario AS dni,
+    COUNT(DISTINCT le.idLista) AS solicitudes_lista_espera,
+    COUNT(DISTINCT t.idTurno) AS total_turnos_asociados
+FROM Paciente p
+JOIN Usuario u ON p.idUsuario = u.idUsuario
+LEFT JOIN ListaEspera le ON p.idPaciente = le.idPaciente
+LEFT JOIN Turno t ON p.idPaciente = t.idPaciente
+GROUP BY p.idPaciente, u.nombreUsuario, u.apellidoUsuario, u.dniUsuario
+HAVING COUNT(DISTINCT le.idLista) >= 1
+ORDER BY solicitudes_lista_espera DESC;
