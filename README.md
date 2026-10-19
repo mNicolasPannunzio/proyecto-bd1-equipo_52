@@ -36,6 +36,10 @@ Acceso rápido a las entregas, modelos y scripts SQL del proyecto:
 * 🛠️ [`SQL/ddl/crear_bd2.sql`](SQL/ddl/crear_bd2.sql): Script DDL completo de creación de base de datos, tablas maestras, derivadas y restricciones de integridad (`PK`, `FK`, `UQ`, `CHK`).
 * 📥 [`SQL/dml/datos_prueba.sql`](SQL/dml/datos_prueba.sql): Script DML con carga de datos de prueba coherentes organizados por niveles de precedencia.
 * 🔍 [`SQL/consultas/Scripts_Consultas.sql`](SQL/consultas/Scripts_Consultas.sql): Scripts de consultas de verificación y casos de uso del sistema.
+* 📂 [`SQL/tecnico - etapa-v/`](SQL/tecnico%20-%20etapa-v/): **Etapa V — Temas Técnicos**
+  * ⚙️ **Procedimientos y Funciones:** [`scripts.sql`](SQL/tecnico%20-%20etapa-v/procedimientos-funciones/scripts.sql) | 📝 [`investigacion.md`](SQL/tecnico%20-%20etapa-v/procedimientos-funciones/investigacion.md)
+  * 🔄 **Transacciones y Concurrencia:** [`scripts.sql`](SQL/tecnico%20-%20etapa-v/transacciones/scripts.sql) | 📝 [`investigacion.md`](SQL/tecnico%20-%20etapa-v/transacciones/investigacion.md)
+  * 🛡️ **Triggers y Auditoría:** [`scripts.sql`](SQL/tecnico%20-%20etapa-v/triggers-auditoria/scripts.sql) | 📝 [`investigacion.md`](SQL/tecnico%20-%20etapa-v/triggers-auditoria/investigacion.md)
 
 ---
 
