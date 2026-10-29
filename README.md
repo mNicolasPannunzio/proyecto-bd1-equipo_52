@@ -31,6 +31,8 @@ Acceso rápido a las entregas, modelos y scripts SQL del proyecto:
   * 📝 Manifiestos individuales de diseño y carga DDL/DML: [`equipo52_etapa03_43825227.md`](docs/etapa-03/equipo52_etapa03_43825227.md), [`equipo52_etapa03_46724743.md`](docs/etapa-03/equipo52_etapa03_46724743.md), [`equipo52_etapa_03_41948148.md`](docs/etapa-03/equipo52_etapa_03_41948148.md), [`equipo52_etapa_03_44683191.md`](docs/etapa-03/equipo52_etapa_03_44683191.md), [`equipo52_etapa_03_45456141.md`](docs/etapa-03/equipo52_etapa_03_45456141.md).
 * 📂 [`docs/etapa-04/`](docs/etapa-04/): **Etapa IV — Consultas SQL**
    * 📝 Manifiestos individuales de consultas: [`equipo52_etapa04_43825227.md`](docs/etapa-04/equipo52_etapa04_43825227.md), [`equipo52_etapa04_45456141.md`](docs/etapa-04/equipo52_etapa04_45456141.md), [`equipo52_etapa04_46724743.md`](docs/etapa-04/equipo52_etapa04_46724743.md), [`equipo52_etapa04_41948148.md`](docs/etapa-04/equipo52_etapa04_41948148.md), [`equipo52_etapa04_44683191.md`](docs/etapa-04/equipo52_etapa04_44683191.md). 
+* 📂 [`docs/etapa-05/`](docs/etapa-05/): **Etapa V — Temas Técnicos**
+   * 📝 Manifiesto individual de temas técnicos: [`equipo52_etapa05_43825227.md`](docs/etapa-05/equipo52_etapa05_43825227.md).
 
 ### 📁 [`SQL/`](SQL/) — Scripts SQL (SQL Server / T-SQL)
 * 🛠️ [`SQL/ddl/crear_bd2.sql`](SQL/ddl/crear_bd2.sql): Script DDL completo de creación de base de datos, tablas maestras, derivadas y restricciones de integridad (`PK`, `FK`, `UQ`, `CHK`).
