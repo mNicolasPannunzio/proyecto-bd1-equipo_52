@@ -52,13 +52,6 @@ BEGIN
 END;
 GO
 
---con esto se puede realizar el proceso
-EXEC dbo.USP_CancelarTurno 
-    @idTurno = 2, 
-    @motivo = 'El paciente canceló por motivos personales';
-
-
-
 --2, Insertar una nueva Obra Social
 CREATE OR ALTER PROCEDURE dbo.USP_InsertarObraSocial
     @nombre VARCHAR(100)
@@ -154,3 +147,44 @@ BEGIN
     RETURN @activo;
 END;
 GO
+
+
+    
+--============================================================================
+--PRUEBAS DE EJECUCIÓN Y LOTES DE DATOS
+
+--1, Inserción de lote de datos directo (INSERT tradicional)
+INSERT INTO ObraSocial (nombreOS) VALUES ('OSPRERA'), ('OSPE'), ('IAPOS');
+
+--2, Inserción de lote de datos invocando al procedimiento almacenado
+EXEC dbo.USP_InsertarObraSocial @nombre = 'San Cristobal';
+EXEC dbo.USP_InsertarObraSocial @nombre = 'Sancor';
+EXEC dbo.USP_InsertarObraSocial @nombre = 'Galeno';
+
+--3, Modificación invocando al procedimiento almacenado
+EXEC dbo.USP_CancelarTurno 
+    @idTurno = 2, 
+    @motivo = 'El paciente canceló por motivos personales';
+
+--4, Eliminación invocando al procedimiento almacenado (Especialidad sin médicos vinculados)
+INSERT INTO Especialidad (nombreEspecialidad, descripcion) 
+VALUES ('Especialidad Temporal', 'Descripción de prueba');
+
+DECLARE @idPrueba INT = SCOPE_IDENTITY();
+EXEC dbo.USP_EliminarEspecialidad @idEspecialidad = @idPrueba;
+
+
+--5, Invocación y prueba de Funciones
+SELECT dbo.FN_ObtenerTotalTurnosMedico(1, '2026-01-01', '2026-12-31') AS total_turnos_atendidos;
+
+SELECT 
+    p.idPaciente,
+    u.nombreUsuario,
+    u.apellidoUsuario,
+    p.fechaNacimiento,
+    dbo.FN_CalcularEdad(p.fechaNacimiento) AS edad_actual 
+FROM Paciente p
+INNER JOIN Usuario u ON p.idUsuario = u.idUsuario;
+
+SELECT idMedico, dbo.FN_EsMedicoActivo(idMedico) AS posee_agenda 
+FROM Medico;
