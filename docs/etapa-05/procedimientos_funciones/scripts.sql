@@ -1,5 +1,5 @@
 --PROCEDIMIENTOS--
---Cancerlar turno...
+--1, Cancerlar turno...
 USE GuaraniTurnosMedicos;
 
 CREATE OR ALTER PROCEDURE dbo.USP_CancelarTurno
@@ -57,10 +57,43 @@ EXEC dbo.USP_CancelarTurno
     @idTurno = 2, 
     @motivo = 'El paciente canceló por motivos personales';
 
+
+
+--2, Insertar una nueva Obra Social
+CREATE OR ALTER PROCEDURE dbo.USP_InsertarObraSocial
+    @nombre VARCHAR(100)
+AS
+BEGIN
+    SET NOCOUNT ON;
+    INSERT INTO ObraSocial (nombreOS)
+    VALUES (@nombre);
+    PRINT 'Obra Social insertada correctamente.';
+END;
+GO
+
+-- 3, Eliminar una especialidad
+CREATE OR ALTER PROCEDURE dbo.USP_EliminarEspecialidad
+    @idEspecialidad INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    IF NOT EXISTS (SELECT 1 FROM Especialidad WHERE idEspecialidad = @idEspecialidad)
+    BEGIN
+        RAISERROR('La especialidad especificada no existe.', 16, 1);
+        RETURN;
+    END
+
+    DELETE FROM Especialidad
+    WHERE idEspecialidad = @idEspecialidad;
+
+    PRINT 'Especialidad eliminada correctamente.';
+END;
+GO
 ---------------------------------------------------------------------------------------------------------------------
 
 --FUNCIONES--
---Mostrar la cantidad de turnos atendidos
+--Funcion 1: Mostrar la cantidad de turnos atendidos
 USE GuaraniTurnosMedicos;
 GO
 
@@ -85,3 +118,39 @@ END;
 GO
 --
 SELECT dbo.FN_ObtenerTotalTurnosMedico(1, '2026-01-01', '2026-12-31') AS total_turnos_atendidos;--para comprobar si anda la funcion
+
+
+-- Función 2: Calcular la edad de un usuario/paciente
+CREATE OR ALTER FUNCTION dbo.FN_CalcularEdad (
+    @fechaNacimiento DATE
+)
+RETURNS INT
+AS
+BEGIN
+    DECLARE @edad INT;
+    SET @edad = DATEDIFF(YEAR, @fechaNacimiento, GETDATE()) - 
+                CASE 
+                    WHEN (MONTH(@fechaNacimiento) > MONTH(GETDATE())) OR 
+                         (MONTH(@fechaNacimiento) = MONTH(GETDATE()) AND DAY(@fechaNacimiento) > DAY(GETDATE())) 
+                    THEN 1 
+                    ELSE 0 
+                END;
+    RETURN @edad;
+END;
+GO
+
+-- Función 3: Verificar si un médico tiene agenda registrada
+CREATE OR ALTER FUNCTION dbo.FN_EsMedicoActivo (
+    @idMedico INT
+)
+RETURNS BIT
+AS
+BEGIN
+    DECLARE @activo BIT = 0;
+
+    IF EXISTS (SELECT 1 FROM AgendaSemanal WHERE idMedico = @idMedico)
+        SET @activo = 1;
+
+    RETURN @activo;
+END;
+GO
