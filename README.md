@@ -40,8 +40,8 @@ Acceso rápido a las entregas, modelos y scripts SQL del proyecto:
 * 🔍 [`SQL/consultas/Scripts_Consultas.sql`](SQL/consultas/Scripts_Consultas.sql): Scripts de consultas de verificación y casos de uso del sistema.
 * 📂 [`SQL/tecnico - etapa-v/`](SQL/tecnico%20-%20etapa-v/): **Etapa V — Temas Técnicos**
   * ⚙️ **Procedimientos y Funciones:** [`scripts.sql`](SQL/tecnico%20-%20etapa-v/procedimientos-funciones/scripts.sql) | 📝 [`investigacion.md`](SQL/tecnico%20-%20etapa-v/procedimientos-funciones/investigacion.md) | 📝 [`evidencias/`](SQL/tecnico%20-%20etapa-v/procedimientos-funciones/evidencias/)
-  * 🔄 **Transacciones y Concurrencia:** [`scripts.sql`](SQL/tecnico%20-%20etapa-v/transacciones/scripts.sql) | 📝 [`investigacion.md`](SQL/tecnico%20-%20etapa-v/transacciones/investigacion.md)
-  * 🛡️ **Triggers y Auditoría:** [`scripts.sql`](SQL/tecnico%20-%20etapa-v/triggers-auditoria/scripts.sql) | 📝 [`investigacion.md`](SQL/tecnico%20-%20etapa-v/triggers-auditoria/investigacion.md)
+  * 🔄 **Transacciones y Concurrencia:** [`scripts.sql`](SQL/tecnico%20-%20etapa-v/transacciones/scripts.sql) | 📝 [`investigacion.md`](SQL/tecnico%20-%20etapa-v/transacciones/investigacion.md) | 📝 [`evidencias/`](SQL/tecnico%20-%20etapa-v/transacciones/evidencias/)
+  * 🛡️ **Triggers y Auditoría:** [`scripts.sql`](SQL/tecnico%20-%20etapa-v/triggers-auditoria/scripts.sql) | 📝 [`investigacion.md`](SQL/tecnico%20-%20etapa-v/triggers-auditoria/investigacion.md) | 📝 [`evidencias/`](SQL/tecnico%20-%20etapa-v/triggers-auditoria/evidencias/)
 
 ---
 
