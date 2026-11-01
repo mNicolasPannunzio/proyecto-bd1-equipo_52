@@ -42,7 +42,8 @@ Acceso rápido a las entregas, modelos y scripts SQL del proyecto:
   * ⚙️ **Procedimientos y Funciones:** [`scripts.sql`](SQL/tecnico%20-%20etapa-v/procedimientos-funciones/scripts.sql) | 📝 [`investigacion.md`](SQL/tecnico%20-%20etapa-v/procedimientos-funciones/investigacion.md) | 📝 [`evidencias/`](SQL/tecnico%20-%20etapa-v/procedimientos-funciones/evidencias/)
   * 🔄 **Transacciones y Concurrencia:** [`scripts.sql`](SQL/tecnico%20-%20etapa-v/transacciones/scripts.sql) | 📝 [`investigacion.md`](SQL/tecnico%20-%20etapa-v/transacciones/investigacion.md) | 📝 [`evidencias/`](SQL/tecnico%20-%20etapa-v/transacciones/evidencias/)
   * 🛡️ **Triggers y Auditoría:** [`scripts.sql`](SQL/tecnico%20-%20etapa-v/triggers-auditoria/scripts.sql) | 📝 [`investigacion.md`](SQL/tecnico%20-%20etapa-v/triggers-auditoria/investigacion.md) | 📝 [`evidencias/`](SQL/tecnico%20-%20etapa-v/triggers-auditoria/evidencias/)
-  * 🔐 **Manejo de Permisos:** ['scripts.sql](SQL/tecnico%20-%20etapa-v/manejo-permisos/scripts.sql) | 📝 [`investigacion.md`](SQL/tecnico%20-%20etapa-v/manejo-permisos/investigacion.md) | 📝 [`evidencias/`](SQL/tecnico%20-%20etapa-v/manejo-permisos/evidencias/)
+  * 🔐 **Manejo de Permisos:** [`scripts.sql`](SQL/tecnico%20-%20etapa-v/manejo-permisos/scripts.sql) | 📝 [`investigacion.md`](SQL/tecnico%20-%20etapa-v/manejo-permisos/investigacion.md) | 📝 [`evidencias/`](SQL/tecnico%20-%20etapa-v/manejo-permisos/evidencias/)
+  * **Optimizacion y consultas:** [`Scripts.sql`](SQL/tecnico%20-%20etapa-v/optimizacion-consultas/Scripts.sql) | 📝 [`investigacion.md`](SQL/tecnico%20-%20etapa-v/optimizacion-consultas/investigacion.md) | 📝 [`evidencias/`](SQL/tecnico%20-%20etapa-v/optimizacion-consultas/evidencias/)
 ---
 
 ## 📌 DESCRIPCIÓN DEL PROYECTO
